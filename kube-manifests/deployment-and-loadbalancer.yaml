@@ -1,36 +1,43 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-app1-deployment
+  creationTimestamp: null
   labels:
     app: nginx-app1
+  name: nginx-app1-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: nginx-app1
+  strategy: {}
   template:
     metadata:
+      creationTimestamp: null
       labels:
         app: nginx-app1
     spec:
       containers:
-        - name: nginx-app1
-          image: arun6783/nginxapp1
-          ports:
-            - containerPort: 80
+      - image: arun6783/app1-nginx
+        name: app1-nginx
+        ports:
+        - containerPort: 80
+        resources: {}
+status: {}
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx-app1-loadbalancer-service
+  creationTimestamp: null
   labels:
     app: nginx-app1
+  name: nginx-app1
 spec:
-  type: LoadBalancer
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
   selector:
     app: nginx-app1
-  ports:
-    - port: 80
-      targetPort: 80
-
+status:
+  loadBalancer: {}
