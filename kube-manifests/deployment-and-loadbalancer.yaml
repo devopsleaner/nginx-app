@@ -18,8 +18,8 @@ spec:
         app: nginx-app1
     spec:
       containers:
-      - image: arun6783/app1-nginx
-        name: app1-nginx
+      - image: arun6783/nginxapp1
+        name: nginxapp1
         ports:
         - containerPort: 80
         resources: {}
